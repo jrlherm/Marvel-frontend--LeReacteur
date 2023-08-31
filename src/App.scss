@@ -1,0 +1,60 @@
+/* General */
+.container {
+  width: 1280px;
+  margin: 0 auto;
+}
+h1 {
+  text-align: center;
+  font-size: 40px;
+  margin: 32px 0;
+}
+h3 {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 12px 0;
+}
+/* --- */
+/* NAV */
+/* --- */
+.nav {
+  background-color: rgba(0, 6, 2, 0.82);
+  padding: 12px 0;
+
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  img {
+    height: 50px;
+  }
+  a {
+    color: #fff;
+    text-decoration: none;
+    padding: 0 12px;
+  }
+  span {
+    padding-left: 12px;
+    color: #fff;
+  }
+}
+
+/* ------- */
+/* COMICS */
+/* ------- */
+.list {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+
+  .item {
+    flex-grow: 1;
+    width: 150px;
+    margin-bottom: 24px;
+
+    img {
+      width: 100%;
+    }
+  }
+}
