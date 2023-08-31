@@ -5,14 +5,15 @@ import axios from "axios";
 const Comics = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState([]);
+  const [searchQuery, setSearchQuery] = useState();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "https://site--marvel-backend--vm2w9vyj7r62.code.run/comics"
+          `https://site--marvel-backend--vm2w9vyj7r62.code.run/comics/?name=${searchQuery}`
         );
-        console.log("data ==> ", response.data);
+
         setData(response.data);
         setIsLoading(false);
       } catch (error) {
@@ -21,7 +22,7 @@ const Comics = () => {
     };
 
     fetchData();
-  }, []);
+  }, [searchQuery]);
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -31,6 +32,12 @@ const Comics = () => {
     <div className="comics-list">
       <div className="container">
         <h1>Comics</h1>
+        <input
+          type="text"
+          placeholder="Search comics"
+          value={searchQuery}
+          onChange={(event) => setSearchQuery(event.target.value)}
+        />
         <div className="list">
           {data.results.map((comic) => (
             <Link to={`/comic/${comic._id}`} key={comic._id}>

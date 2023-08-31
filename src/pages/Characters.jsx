@@ -13,7 +13,6 @@ const Characters = () => {
         const response = await axios.get(
           `https://site--marvel-backend--vm2w9vyj7r62.code.run/characters/?name=${searchQuery}`
         );
-        console.log("data ==> ", response.data);
         setData(response.data);
         setIsLoading(false);
       } catch (error) {
@@ -35,7 +34,7 @@ const Characters = () => {
         type="text"
         placeholder="Search characters"
         value={searchQuery}
-        onChange={(e) => setSearchQuery(e.target.value)}
+        onChange={(event) => setSearchQuery(event.target.value)}
       />
       <div className="list">
         {data?.results?.map((character) => (
