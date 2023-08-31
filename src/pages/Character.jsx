@@ -13,7 +13,7 @@ const Character = () => {
     const fetchCharacterData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3000/characters/${id}`
+          `https://site--marvel-backend--vm2w9vyj7r62.code.run/characters/${id}`
         );
         setCharacterData(response.data);
         setIsLoading(false);
@@ -30,7 +30,7 @@ const Character = () => {
         const comicsData = await Promise.all(
           comics.map(async (comicId) => {
             const response = await axios.get(
-              `http://localhost:3000/comic/${comicId}`
+              `https://site--marvel-backend--vm2w9vyj7r62.code.run/comic/${comicId}`
             );
             console.log("response.data =>>", response.data);
             return response.data;
