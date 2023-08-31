@@ -52,8 +52,16 @@ const Character = () => {
 
   return (
     <div className="character-details">
-      <div className="container">
+      <div
+        className="header"
+        style={{
+          backgroundImage: `url(${characterData.thumbnail.path}.${characterData.thumbnail.extension})`,
+        }}
+      >
+        <div className="overlay"></div>
         <h1>{characterData.name}</h1>
+      </div>
+      <div className="container">
         <img
           src={`${characterData.thumbnail.path}.${characterData.thumbnail.extension}`}
           alt={`${characterData.name} thumbnail`}
@@ -61,9 +69,9 @@ const Character = () => {
         <p>{characterData.description}</p>
         <div className="comics-list">
           <h2>Retrouvez le dans ces comics :</h2>
-          <div className="character-comics-list">
+          <div className="character-comics-list list">
             {comicData.map((comic) => (
-              <div className="character-comic" key="comic._id">
+              <div className="character-comic item" key="comic._id">
                 <Link to={`/comic/${comic._id}`}>
                   <img
                     src={`${comic.thumbnail.path}.${comic.thumbnail.extension}`}
