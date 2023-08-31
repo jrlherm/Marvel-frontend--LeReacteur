@@ -30,12 +30,14 @@ const Characters = () => {
     <div className="characters-list">
       {/* <div className="container"> */}
       <h1>Personnages</h1>
+
       <input
         type="text"
         placeholder="Search characters"
         value={searchQuery}
         onChange={(event) => setSearchQuery(event.target.value)}
       />
+
       <div className="list">
         {data?.results?.map((character) => (
           <Link to={`/character/${character._id}`} key={character._id}>
@@ -49,7 +51,6 @@ const Characters = () => {
             </div>
           </Link>
         ))}
-        {/* </div> */}
       </div>
     </div>
   );
