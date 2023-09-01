@@ -6,7 +6,6 @@ const Character = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [characterData, setCharacterData] = useState({});
   const [comicData, setComicData] = useState([]);
-  const [isFavorite, setIsFavorite] = useState(false);
 
   const { id } = useParams();
 
@@ -18,7 +17,6 @@ const Character = () => {
         );
         setCharacterData(response.data);
         setIsLoading(false);
-        setIsFavorite(userFavorites.includes(id));
 
         fetchComicsData(response.data.comics || []);
       } catch (error) {
