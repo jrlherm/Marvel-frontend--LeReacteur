@@ -1,47 +1,39 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import Cookies from "js-cookie";
 
-const Favorites = () => {
-  const [userFavorites, setUserFavorites] = useState({
-    characters: [],
-    comics: [],
-  });
+function FavoriteComics() {
+  const [favoritesCharacters, setFavoritesCharacters] = useState([]);
 
   useEffect(() => {
-    const fetchFavorites = async () => {
-      try {
-        const response = await axios.get("/get-favorites");
-        setUserFavorites(response.data);
-      } catch (error) {
-        console.log(error.message);
-      }
-    };
-
-    fetchFavorites();
+    const userToken = Cookies.get("token");
+    console.log(userToken);
+    axios
+      .get(
+        `https://site--marvel-backend--vm2w9vyj7r62.code.run/favoritesCharacters?userToken=${userToken}`
+      )
+      .then((response) => {
+        setFavoritesCharacters(response.data.favorites);
+      })
+      .catch((error) => {
+        console.error(
+          "Erreur lors de la récupération des comics favoris :",
+          error
+        );
+      });
   }, []);
 
   return (
-    <div className="favorites">
-      <h1>Mes Favoris</h1>
-      <div className="favorite-characters">
-        <h2>Personnages favoris</h2>
-        <div className="list">
-          {userFavorites.characters.map((character) => (
-            <p key={character._id}>{character.name}</p>
-          ))}
-        </div>
-      </div>
-      <div className="favorite-comics">
-        <h2>Comics favoris</h2>
-        <div className="list">
-          {userFavorites.comics.map((comic) => (
-            <p key={comic._id}>{comic.title}</p>
-          ))}
-        </div>
-      </div>
+    <div>
+      <h2>Mes Comics Favoris</h2>
+      <ul>
+        {favoritesCharacters.map((comic) => (
+          <li key={comic._id}>{comic.title}</li>
+        ))}
+      </ul>
     </div>
   );
-};
+}
 
-export default Favorites;
+export default FavoriteComics;

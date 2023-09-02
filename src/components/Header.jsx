@@ -5,7 +5,10 @@ const Header = ({ userToken, setUserToken }) => {
   return (
     <div className="nav">
       <div className="container">
-        <img src={logo} alt="Logo marvel" />
+        <Link to="/">
+          <img src={logo} alt="Logo marvel" />
+        </Link>
+
         <div className="links">
           <Link to="/characters">
             <span>Personnages</span>
