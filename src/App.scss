@@ -31,6 +31,11 @@ a {
   text-decoration: none;
 }
 
+.characters-list {
+  .header {
+    background-size: cover;
+  }
+}
 /* --- */
 /* NAV */
 /* --- */
@@ -59,34 +64,60 @@ a {
 }
 
 /* ------- */
-/* COMICS */
+/* Lists Pages */
 /* ------- */
+.search-bar {
+  width: 500px;
+  padding: 24px;
+  font-size: 18px;
+  text-align: center;
+  margin: 0 auto;
+  border-radius: 100px;
+}
 .list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 24px;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 18px;
   flex-wrap: wrap;
 
   .item {
     flex-grow: 1;
     width: 150px;
     margin-bottom: 24px;
+    width: 100%;
+    position: relative;
 
     img {
       width: 100%;
+      border-radius: 8px;
+      background-size: cover;
+      box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.5);
     }
-    h2,
+    h3,
     p {
       margin-top: 12px;
       text-align: center;
       line-height: 18px;
+      text-align: center;
+    }
+    .fav-button {
+      position: absolute;
+      top: 12px;
+      right: 12px;
     }
   }
 }
-
+// CHARACTER List
+.characters-list {
+  img {
+    height: 306px;
+    object-position: center;
+    object-fit: cover;
+  }
+}
 // CHARACTER
 .header {
-  position: relative; /* Make sure the container is positioned relatively */
+  position: relative;
   background-size: contain;
   background-repeat: no-repeat;
   background-position: right;

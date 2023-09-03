@@ -1,13 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import Cookies from "js-cookie";
+
+import background from "../assets/cover-characters.jpg";
 
 const Characters = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState([]);
+  const [favorites, setFavorites] = useState([]);
+  const [favoritesCharacters, setFavoritesCharacters] = useState();
+
   const [searchQuery, setSearchQuery] = useState("");
   const [skip, setSkip] = useState(0);
-  const [limit, setLimit] = useState(20); // Adjust the limit as needed
+  const [limit, setLimit] = useState(20);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -24,6 +30,72 @@ const Characters = () => {
     fetchData();
   }, [searchQuery, skip, limit]);
 
+  useEffect(() => {
+    const fetchFavorites = async () => {
+      const userToken = Cookies.get("token");
+      try {
+        const fetchFavouriteCharactersId = await axios.get(
+          `https://site--marvel-backend--vm2w9vyj7r62.code.run/favoritesCharacters?userToken=${userToken}`
+        );
+        const characterIds = fetchFavouriteCharactersId.data.favorites;
+        console.log("characterIds ==>", characterIds);
+
+        const characterPromises = characterIds.map(async (id) => {
+          const response = await axios.get(
+            `https://site--marvel-backend--vm2w9vyj7r62.code.run/characters/${id}`
+          );
+          console.log(response.data);
+          return response.data;
+        });
+
+        const charactersData = await Promise.all(characterPromises);
+        setFavoritesCharacters(charactersData);
+        console.log("charactersData ==>", charactersData);
+      } catch (error) {
+        console.error("Erreur lors de la récupération des favoris :", error);
+      }
+    };
+    fetchFavorites();
+  }, [favorites]);
+
+  const isCharacterInFavorites = (characterId) => {
+    return favorites.some((favorite) => favorite._id === characterId);
+  };
+
+  const addFavoriteCharacter = async (characterId) => {
+    const userToken = Cookies.get("token");
+
+    try {
+      const response = await axios.post(
+        `https://site--marvel-backend--vm2w9vyj7r62.code.run/characters/add-favorite`,
+        {
+          userToken: userToken,
+          favoriteCharacterId: characterId,
+        }
+      );
+      console.log(response.data.message);
+      setFavorites([...favorites, { _id: characterId }]);
+    } catch (error) {
+      console.error("Erreur lors de l'ajout aux favoris :", error);
+    }
+  };
+
+  const removeFavoriteCharacter = async (characterId) => {
+    const userToken = Cookies.get("token");
+
+    try {
+      const response = await axios.delete(
+        `https://site--marvel-backend--vm2w9vyj7r62.code.run/characters/favorites?userToken=${userToken}&favoriteCharacterId=${characterId}`
+      );
+      console.log(response.data.message);
+      setFavorites(
+        favorites.filter((favorite) => favorite._id !== characterId)
+      );
+    } catch (error) {
+      console.error("Erreur lors de la suppression du favori :", error);
+    }
+  };
+
   if (isLoading) {
     return <div>Loading...</div>;
   }
@@ -32,9 +104,16 @@ const Characters = () => {
 
   return (
     <div className="characters-list">
-      <div className="container">
+      <div
+        className="header"
+        style={{
+          backgroundImage: `url(${background})`,
+        }}
+      >
+        <div className="overlay"></div>
         <h1>Characters</h1>
-
+      </div>
+      <div className="container">
         <div className="pagination-simple">
           <button
             onClick={() => setSkip(Math.max(0, skip - limit))}
@@ -54,6 +133,7 @@ const Characters = () => {
         </div>
 
         <input
+          className="search-bar"
           type="text"
           placeholder="Search characters"
           value={searchQuery}
@@ -62,16 +142,32 @@ const Characters = () => {
 
         <div className="list">
           {data.results.map((character) => (
-            <Link to={`/character/${character._id}`} key={character._id}>
-              <div className="item">
-                <img
-                  src={`${character.thumbnail.path}.${character.thumbnail.extension}`}
-                  alt={`${character.name} thumbnail`}
-                />
-                <h3>{character.name}</h3>
-                <p>{character.description}</p>
+            <div key={character._id} className="item">
+              <Link to={`/character/${character._id}`}>
+                {console.log(`${character.name} ID ==>`, character._id)}
+                <div>
+                  <img
+                    src={`${character.thumbnail.path}.${character.thumbnail.extension}`}
+                    alt={`${character.name} thumbnail`}
+                  />
+                  <h3>{character.name}</h3>
+                  {/* <p>{character.description}</p> */}
+                </div>{" "}
+              </Link>
+              <div className="fav-button">
+                {isCharacterInFavorites(character._id) ? (
+                  <button
+                    onClick={() => removeFavoriteCharacter(character._id)}
+                  >
+                    Supprimer des favoris
+                  </button>
+                ) : (
+                  <button onClick={() => addFavoriteCharacter(character._id)}>
+                    Ajouter aux favoris
+                  </button>
+                )}
               </div>
-            </Link>
+            </div>
           ))}
         </div>
       </div>

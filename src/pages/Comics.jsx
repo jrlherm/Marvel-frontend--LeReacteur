@@ -35,7 +35,7 @@ const Comics = () => {
       <div className="container">
         <h1>Comics</h1>
 
-        <div className="pagination-simple">
+        <div className="pagination">
           <button
             onClick={() => setSkip(Math.max(0, skip - limit))}
             disabled={skip === 0}
@@ -69,7 +69,6 @@ const Comics = () => {
                   alt={`${comic.title} thumbnail`}
                 />
                 <h3>{comic.title}</h3>
-                <p>{comic.description}</p>
               </div>
             </Link>
           ))}
