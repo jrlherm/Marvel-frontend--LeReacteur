@@ -188,6 +188,15 @@ a {
     font-size: 48px;
     text-shadow: 0px 0px 5px rgba(0, 6, 2, 0.82);
   }
+  #logout {
+    background: none !important;
+  }
+}
+
+.links a {
+  :hover {
+    font-weight: bold;
+  }
 }
 
 // COMICS

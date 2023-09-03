@@ -22,6 +22,14 @@ const Header = ({ userToken, setUserToken }) => {
           {userToken ? (
             <span>
               <button
+                style={{
+                  background: "none",
+                  border: "1px solid #FFF",
+                  padding: "5px 10px",
+                  borderRadius: "50px",
+                  color: "#FFF",
+                  padding: "12px 24px",
+                }}
                 className="logout"
                 onClick={() => {
                   setUserToken("");
