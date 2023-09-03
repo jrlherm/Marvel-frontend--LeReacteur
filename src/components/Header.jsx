@@ -1,8 +1,11 @@
 import logo from "../assets/logo.png";
+import { useState } from "react";
 import { Link, Navigate } from "react-router-dom";
 import Cookies from "js-cookie";
 
 const Header = ({ userToken, setUserToken }) => {
+  const [logout, setLogout] = useState(false);
+
   return (
     <div className="nav">
       <div className="container">
@@ -10,36 +13,40 @@ const Header = ({ userToken, setUserToken }) => {
           <img src={logo} alt="Logo marvel" />
         </Link>
 
-        <div className="links">
-          <Link to="/characters">
-            <span>Personnages</span>
-          </Link>
-          <Link to="/comics">
-            <span>Comics</span>
-          </Link>
-          <Link to="/favorites">
-            <span>Favoris</span>
-          </Link>
+        <div className="header-links">
+          <div className="header-links-left">
+            <Link to="/characters">
+              <span>Personnages</span>
+            </Link>
+            <Link to="/comics">
+              <span>Comics</span>
+            </Link>
+          </div>
           {userToken ? (
-            <span>
-              <button
-                style={{
-                  background: "none",
-                  border: "1px solid #FFF",
-                  padding: "5px 10px",
-                  borderRadius: "50px",
-                  color: "#FFF",
-                  padding: "12px 24px",
-                }}
-                className="logout"
-                onClick={() => {
-                  Cookies.remove("token");
-                  Navigate("/");
-                }}
-              >
-                Logout
-              </button>
-            </span>
+            <div>
+              <Link to="/favorites">
+                <span>Favoris</span>
+              </Link>
+              <span>
+                <button
+                  style={{
+                    background: "none",
+                    border: "1px solid #FFF",
+                    padding: "5px 10px",
+                    borderRadius: "50px",
+                    color: "#FFF",
+                    padding: "12px 24px",
+                  }}
+                  className="logout"
+                  onClick={() => {
+                    Cookies.remove("token");
+                    setLogout(!logout);
+                  }}
+                >
+                  Logout
+                </button>
+              </span>
+            </div>
           ) : (
             <span>
               <Link to="/login">

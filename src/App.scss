@@ -183,6 +183,9 @@ a {
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 1;
   }
+  .list {
+    display: flex;
+  }
 
   h1 {
     color: #fff;
@@ -190,15 +193,20 @@ a {
     font-size: 48px;
     text-shadow: 0px 0px 5px rgba(0, 6, 2, 0.82);
   }
+
   #logout {
     background: none !important;
   }
 }
-
-.links a {
-  :hover {
+.header-links {
+  .header-links-left {
+    display: flex;
+    align-items: center;
+  }
+  a:hover {
     font-weight: bold;
   }
+  display: flex;
 }
 
 // COMICS
@@ -227,9 +235,12 @@ a {
   .detail-right {
     overflow: hidden scroll;
     img {
-      max-height: 362px;
+      // max-height: 362px;
     }
   }
+}
+#root > div.details > div > div > div > a > div > img {
+  max-height: 362px;
 }
 
 // FORMS
@@ -312,4 +323,30 @@ a {
       }
     }
   }
+}
+
+.character-page {
+  .detail-right p {
+    margin-bottom: 24px;
+  }
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  font-family: "Quicksand", sans-serif;
+  text-align: center;
+  height: 50px;
+  margin-top: 12px;
+
+  a {
+    color: #fff;
+    margin: 0 5px;
+  }
+}
+.character-comic p {
+  margin-bottom: 24px;
 }
