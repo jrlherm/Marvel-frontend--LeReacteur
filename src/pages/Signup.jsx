@@ -16,7 +16,6 @@ const Signup = () => {
 
   const navigate = useNavigate();
 
-  // Function to handle every change in the form to store it in formData
   const handleChange = (event) => {
     const { name, value, type, checked } = event.target;
     const newValue = type === "checkbox" ? checked : value;

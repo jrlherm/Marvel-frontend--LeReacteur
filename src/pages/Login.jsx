@@ -36,7 +36,6 @@ const Login = ({ setUserToken }) => {
       console.log("response.data => ", response.data);
       console.log("response.data.token => ", response.data.token);
 
-      // If the token has been created redirect to "/"
       if (response.data.token) {
         setUserToken(response.data.token);
         navigate("/comics");
