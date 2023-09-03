@@ -51,45 +51,47 @@ const Signup = () => {
   };
 
   return (
-    <div className="signup-container">
-      <h2>S'inscrire</h2>
-      <form onSubmit={handleSubmit} className="signup-form">
-        <input
-          type="text"
-          placeholder="Nom d'utilisateur"
-          name="username"
-          value={formData.username}
-          onChange={handleChange}
-        />
-        <input
-          type="email"
-          placeholder="Email"
-          name="email"
-          value={formData.email}
-          onChange={handleChange}
-        />
-        <span className="signup-login-error-message">{errorMessage}</span>
-        <input
-          type="password"
-          placeholder="Mot de passe"
-          name="password"
-          onChange={handleChange}
-          value={formData.password}
-        />
-        <div className="accept-cgu">
+    <div className="signup-container forms">
+      <div className="container">
+        <h1>S'inscrire</h1>
+        <form onSubmit={handleSubmit} className="signup-form">
           <input
-            type="checkbox"
-            name="acceptCGU"
-            value={formData.acceptCGU}
+            type="text"
+            placeholder="Nom d'utilisateur"
+            name="username"
+            value={formData.username}
             onChange={handleChange}
           />
-          <label htmlFor="acceptCGU">
-            Accepter les conditions générales d'utilisation.
-          </label>
-        </div>
-        <button type="submit">S'inscrire</button>
-      </form>
-      <Link to="/login">Tu as déjà un compte ? Connecte-toi !</Link>
+          <input
+            type="email"
+            placeholder="Email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+          />
+          <span className="signup-login-error-message">{errorMessage}</span>
+          <input
+            type="password"
+            placeholder="Mot de passe"
+            name="password"
+            onChange={handleChange}
+            value={formData.password}
+          />
+          <div className="accept-cgu">
+            <input
+              type="checkbox"
+              name="acceptCGU"
+              value={formData.acceptCGU}
+              onChange={handleChange}
+            />
+            <label htmlFor="acceptCGU">
+              Accepter les conditions générales d'utilisation.
+            </label>
+          </div>
+          <button type="submit">S'inscrire</button>
+        </form>
+        <Link to="/login">Tu as déjà un compte ? Connecte-toi !</Link>
+      </div>
     </div>
   );
 };

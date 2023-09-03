@@ -9,7 +9,7 @@ const Comics = () => {
   const [data, setData] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [skip, setSkip] = useState(0);
-  const [limit, setLimit] = useState(24);
+  const [limit, setLimit] = useState(48);
 
   useEffect(() => {
     const fetchData = async () => {

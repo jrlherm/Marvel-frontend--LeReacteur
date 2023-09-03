@@ -11,7 +11,8 @@ h4,
 h5,
 h6,
 p,
-a {
+a,
+label {
   font-family: "Quicksand", sans-serif;
   color: #000;
 }
@@ -42,6 +43,7 @@ a {
 .nav {
   background-color: rgba(0, 6, 2, 0.82);
   padding: 12px 0;
+  height: 54px;
 
   .container {
     display: flex;
@@ -95,7 +97,7 @@ a {
 
   .item {
     flex-grow: 1;
-    width: 150px;
+    width: 100%;
     margin-bottom: 24px;
     width: 100%;
     position: relative;
@@ -203,5 +205,111 @@ a {
 .comics-list {
   img {
     height: 460px;
+  }
+}
+
+// DETAILS
+.details {
+  display: flex;
+  padding: 32px;
+  gap: 32px;
+  height: calc(100vh - 200px);
+  img {
+    border-radius: 8px;
+    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.5);
+    height: 100%;
+    object-fit: cover;
+  }
+  h1 {
+    margin-top: 0;
+    text-align: left;
+  }
+  .detail-right {
+    overflow: hidden scroll;
+    img {
+      max-height: 362px;
+    }
+  }
+}
+
+// FORMS
+.forms {
+  .container {
+    width: 500px;
+  }
+  form {
+    display: flex;
+    flex-direction: column;
+    input {
+      margin: 12px 0;
+      padding: 14px 24px;
+      border-radius: 100px;
+      border-color: rgba(0, 0, 0, 0.1);
+      background-color: rgba(0, 0, 0, 0.05);
+    }
+    button {
+      margin-top: 18px;
+      padding: 14px;
+      border-radius: 100px;
+    }
+    a {
+      margin-top: 18px;
+      text-align: center;
+    }
+    label {
+      margin-left: 12px;
+    }
+    .accept-cgu {
+      display: flex;
+      align-items: center;
+    }
+    .account-link {
+      display: block;
+      text-align: center;
+    }
+  }
+}
+#root > div.signup-container.forms > div > a,
+#root > div.signin.forms > div > a {
+  text-align: center;
+  margin-top: 12px;
+  display: block;
+}
+
+// Favorites
+.favorites {
+  .favorite {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    margin-top: 24px;
+    background-color: rgba(0, 0, 0, 0.05);
+    padding: 12px 18px;
+    border-radius: 8px;
+    img {
+      width: 50px;
+      border-radius: 50px;
+      box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.5);
+    }
+    p {
+      font-weight: bold;
+    }
+    .btn {
+      margin-left: auto;
+
+      button {
+        background: none;
+        padding: 12px 18px;
+        border-radius: 50px;
+        background: none;
+        text-align: center;
+        margin-left: auto;
+        border: 1px solid rgba(0, 0, 0, 0.25);
+        color: rgba(0, 0, 0, 0.8);
+      }
+      button:hover {
+        font-weight: bold;
+      }
+    }
   }
 }

@@ -44,18 +44,24 @@ const FavoriteComics = () => {
   };
 
   return (
-    <div>
-      <h2>Mes personnages Favoris</h2>
-      <ul>
+    <div className="favorites">
+      <div className="container">
+        <h1>Mes personnages Favoris</h1>
         {favoritesCharacters.map((character, index) => (
-          <li key={index}>
-            {character.name}
-            <button onClick={() => removeFavoriteCharacter(character._id)}>
-              Supprimer
-            </button>
-          </li>
+          <div key={index} className="favorite">
+            <img
+              src={`${character.thumbnail.path}.${character.thumbnail.extension}`}
+              alt={`${character.name} thumbnail`}
+            />
+            <p>{character.name}</p>
+            <div className="btn">
+              <button onClick={() => removeFavoriteCharacter(character._id)}>
+                Supprimer
+              </button>
+            </div>
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 };

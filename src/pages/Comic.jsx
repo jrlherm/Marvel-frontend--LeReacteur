@@ -75,16 +75,15 @@ const Comic = () => {
   }
 
   return (
-    <div className="comic-details">
-      <div className="container">
+    <div className="details">
+      <img
+        src={`${data.thumbnail.path}.${data.thumbnail.extension}`}
+        alt={`${data.name} thumbnail`}
+      />
+      <div className="detail-right">
         <h1>{data.title}</h1>
-
-        <img
-          src={`${data.thumbnail.path}.${data.thumbnail.extension}`}
-          alt={`${data.name} thumbnail`}
-        />
         <p>{data.description}</p>
-        <h2>Ils sont présent dans ce comic</h2>
+        <h3>Ils sont présent dans ce comic</h3>
 
         <div className="characters-in-comic">
           {charactersLoading ? (

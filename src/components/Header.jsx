@@ -1,5 +1,6 @@
 import logo from "../assets/logo.png";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
+import Cookies from "js-cookie";
 
 const Header = ({ userToken, setUserToken }) => {
   return (
@@ -32,7 +33,8 @@ const Header = ({ userToken, setUserToken }) => {
                 }}
                 className="logout"
                 onClick={() => {
-                  setUserToken("");
+                  Cookies.remove("token");
+                  Navigate("/");
                 }}
               >
                 Logout

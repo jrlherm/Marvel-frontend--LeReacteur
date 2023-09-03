@@ -48,7 +48,7 @@ const Login = ({ setUserToken }) => {
   };
 
   return (
-    <div className="signin">
+    <div className="signin forms">
       <div className="container">
         <h1>Se connecter</h1>
         <form onSubmit={handleSubmit}>
@@ -70,8 +70,10 @@ const Login = ({ setUserToken }) => {
           <button type="submit" disabled={isLoading}>
             {isLoading ? "Chargement..." : "Se connecter"}
           </button>
-          <Link to="/signup">Tu n'as pas de compte ? Inscris-toi !</Link>
         </form>
+        <Link to="/signup" className="account-link">
+          Tu n'as pas de compte ? Inscris-toi !
+        </Link>
       </div>
     </div>
   );
