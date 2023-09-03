@@ -4,6 +4,8 @@ import axios from "axios";
 import Cookies from "js-cookie";
 
 import background from "../assets/cover-characters.jpg";
+import heartFull from "../assets/heart-full.svg";
+import heartBorder from "../assets/heart-border.svg";
 
 const Characters = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -114,32 +116,15 @@ const Characters = () => {
         <h1>Characters</h1>
       </div>
       <div className="container">
-        <div className="pagination-simple">
-          <button
-            onClick={() => setSkip(Math.max(0, skip - limit))}
-            disabled={skip === 0}
-          >
-            Précédent
-          </button>
-          <span>
-            Page {Math.floor(skip / limit) + 1} sur {totalPages}
-          </span>
-          <button
-            onClick={() => setSkip(skip + limit)}
-            disabled={skip + limit >= data.total}
-          >
-            Suivant
-          </button>
+        <div className="search-pagination">
+          <input
+            className="search-bar"
+            type="text"
+            placeholder="Search characters"
+            value={searchQuery}
+            onChange={(event) => setSearchQuery(event.target.value)}
+          />
         </div>
-
-        <input
-          className="search-bar"
-          type="text"
-          placeholder="Search characters"
-          value={searchQuery}
-          onChange={(event) => setSearchQuery(event.target.value)}
-        />
-
         <div className="list">
           {data.results.map((character) => (
             <div key={character._id} className="item">
@@ -151,7 +136,6 @@ const Characters = () => {
                     alt={`${character.name} thumbnail`}
                   />
                   <h3>{character.name}</h3>
-                  {/* <p>{character.description}</p> */}
                 </div>{" "}
               </Link>
               <div className="fav-button">
@@ -159,16 +143,33 @@ const Characters = () => {
                   <button
                     onClick={() => removeFavoriteCharacter(character._id)}
                   >
-                    Supprimer des favoris
+                    <img src={heartFull} alt="" />
                   </button>
                 ) : (
                   <button onClick={() => addFavoriteCharacter(character._id)}>
-                    Ajouter aux favoris
+                    <img src={heartBorder} alt="" />
                   </button>
                 )}
               </div>
             </div>
           ))}
+        </div>
+        <div className="pagination">
+          <button
+            onClick={() => setSkip(Math.max(0, skip - limit))}
+            disabled={skip === 0}
+          >
+            &lt;
+          </button>
+          <span>
+            Page {Math.floor(skip / limit) + 1} sur {totalPages}
+          </span>
+          <button
+            onClick={() => setSkip(skip + limit)}
+            disabled={skip + limit >= data.total}
+          >
+            &gt;
+          </button>
         </div>
       </div>
     </div>
