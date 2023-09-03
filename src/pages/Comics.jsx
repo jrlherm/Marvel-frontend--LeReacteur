@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 
 import background from "../assets/cover-comics.jpg";
+import Cookies from "js-cookie";
 
 const Comics = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -10,6 +11,8 @@ const Comics = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [skip, setSkip] = useState(0);
   const [limit, setLimit] = useState(48);
+
+  const token = Cookies.get("token");
 
   useEffect(() => {
     const fetchData = async () => {

@@ -17,6 +17,8 @@ const Characters = () => {
   const [skip, setSkip] = useState(0);
   const [limit, setLimit] = useState(20);
 
+  const token = Cookies.get("token");
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -138,19 +140,21 @@ const Characters = () => {
                   <h3>{character.name}</h3>
                 </div>{" "}
               </Link>
-              <div className="fav-button">
-                {isCharacterInFavorites(character._id) ? (
-                  <button
-                    onClick={() => removeFavoriteCharacter(character._id)}
-                  >
-                    <img src={heartFull} alt="" />
-                  </button>
-                ) : (
-                  <button onClick={() => addFavoriteCharacter(character._id)}>
-                    <img src={heartBorder} alt="" />
-                  </button>
-                )}
-              </div>
+              {token && (
+                <div className="fav-button">
+                  {isCharacterInFavorites(character._id) ? (
+                    <button
+                      onClick={() => removeFavoriteCharacter(character._id)}
+                    >
+                      <img src={heartFull} alt="" />
+                    </button>
+                  ) : (
+                    <button onClick={() => addFavoriteCharacter(character._id)}>
+                      <img src={heartBorder} alt="" />
+                    </button>
+                  )}
+                </div>
+              )}
             </div>
           ))}
         </div>
