@@ -340,7 +340,6 @@ a {
   font-family: "Quicksand", sans-serif;
   text-align: center;
   height: 50px;
-  margin-top: 12px;
 
   a {
     color: #fff;
@@ -349,4 +348,32 @@ a {
 }
 .character-comic p {
   margin-bottom: 24px;
+}
+
+.home {
+  text-align: center;
+  .buttons {
+    margin-top: 24px;
+  }
+  h1 {
+    margin-top: 0;
+    color: #fff;
+    text-shadow: 0px 0px 2px rgba(0, 0, 0, 0.8);
+    font-weight: 120px;
+  }
+}
+.homelink {
+  margin-top: 70px;
+  a {
+    color: #fff;
+    border: 1px solid white;
+    padding: 12px 24px;
+    border-radius: 50px;
+    background-color: rgba(0, 0, 0, 0.5);
+    transition-duration: 0.3s;
+  }
+  a:hover {
+    background-color: #fff;
+    color: black;
+  }
 }
