@@ -50,7 +50,7 @@ const Signup = () => {
   };
 
   return (
-    <div className="signup-container forms">
+    <div className="signup-container forms minheight">
       <div className="container">
         <h1>S'inscrire</h1>
         <form onSubmit={handleSubmit} className="signup-form">

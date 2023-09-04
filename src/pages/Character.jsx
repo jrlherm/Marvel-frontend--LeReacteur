@@ -50,7 +50,7 @@ const Character = () => {
   }
 
   return (
-    <div className="character-page">
+    <div className="character-page minheight">
       <div className="details">
         <img
           src={`${characterData.thumbnail.path}.${characterData.thumbnail.extension}`}

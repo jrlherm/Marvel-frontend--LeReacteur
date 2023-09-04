@@ -5,7 +5,7 @@ const Home = () => {
     <div
       className="home"
       style={{
-        height: "87vh",
+        height: "calc(100vh - 122px)",
         backgroundImage: `url(${"https://www.komar.de/media/cms/fileadmin/user_upload/Category/Fototapeten/Marvel/komar-fototapeten-marvel.jpg"})`,
         backgroundSize: "cover",
         display: "flex",
