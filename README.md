@@ -6,7 +6,8 @@
 ![home](https://github.com/jrlherm/Marvel-frontend--LeReacteur/assets/10896142/814e2329-04e6-41b7-aa3e-3eb5e6e9041e)
 
 ### Comics & Characters list
-![Uploading comicsAndCharacters.png…]()
+![comicsAndCharacters](https://github.com/jrlherm/Marvel-frontend--LeReacteur/assets/10896142/ae313dc7-5cf3-4355-a760-23a47cafb93a)
+
 
 ### Comics & Characters details
 ![comicAndCharacter](https://github.com/jrlherm/Marvel-frontend--LeReacteur/assets/10896142/31daa7b9-ccbd-4930-81c2-e57abfd858b1)
